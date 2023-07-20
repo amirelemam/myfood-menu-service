@@ -1,18 +1,20 @@
-import { Controller, Get, Param, Post } from '@nestjs/common';
+import { Controller, Get, Post, Param, ParseUUIDPipe } from '@nestjs/common';
 import { MenuService } from './menu.service';
 import { Menu } from './menu.entity';
-
+import { Body } from '@nestjs/common';
+import { MenuDto } from './dto/menu.dto';
+import { MenuValidatorPipe } from './dto/menu.pipe';
 @Controller()
 export class MenuController {
   constructor(private readonly menuService: MenuService) {}
 
   @Post()
-  create(): string {
-    return this.menuService.create();
+  create(@Body(new MenuValidatorPipe()) menuData: MenuDto): string {
+    return this.menuService.create(menuData);
   }
 
   @Get(':id')
-  findById(@Param('id') id: string): Promise<Menu> {
+  findById(@Param('id', new ParseUUIDPipe()) id: string): Promise<Menu> {
     return this.menuService.findById(id);
   }
 }

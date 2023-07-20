@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { Menu } from './menu.entity';
-
+import { MenuDto } from './dto/menu.dto';
 @Injectable()
 export class MenuService {
   constructor(
@@ -10,8 +10,8 @@ export class MenuService {
     private readonly repository: Repository<Menu>,
   ) {}
 
-  create(): string {
-    return 'This action adds a new menu';
+  create(menuData: MenuDto): string {
+    return JSON.stringify(menuData);
   }
 
   async findById(menuId: string): Promise<Menu> {

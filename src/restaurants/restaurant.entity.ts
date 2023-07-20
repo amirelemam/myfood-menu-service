@@ -9,6 +9,12 @@ export class Restaurant {
   @Column()
   name: string;
 
-  @OneToMany(() => Menu, (menu) => menu.restaurant)
+  @OneToMany(() => Menu, (menu) => menu.restaurantId)
   menus: Menu[];
+
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  createdAt: Date;
+
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  updatedAt: Date;
 }

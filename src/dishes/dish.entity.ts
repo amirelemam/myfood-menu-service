@@ -10,5 +10,11 @@ export class Dish {
   name: string;
 
   @ManyToOne(() => Menu, (menu) => menu.dishes)
-  menu: Menu;
+  menuId: Menu;
+
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  createdAt: Date;
+
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  updatedAt: Date;
 }
