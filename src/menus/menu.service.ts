@@ -11,7 +11,7 @@ export class MenuService {
     private readonly repository: Repository<Menu>,
     @InjectRepository(Restaurant)
     private readonly restaurantRepository: Repository<Restaurant>,
-  ) {}
+  ) { }
 
   async create(menuData: MenuDto) {
     const restaurant = await this.restaurantRepository.findOne({
@@ -35,6 +35,10 @@ export class MenuService {
       where: { id: menuId },
       loadRelationIds: true,
     });
+
+    if (!menu) {
+      throw new NotFoundException(`Menu with ID ${menuId} not found`);
+    }
 
     return menu;
   }
