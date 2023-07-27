@@ -4,7 +4,9 @@ import { Menu } from './menu.entity';
 import { Body } from '@nestjs/common';
 import { MenuDto } from './dto/menu.dto';
 import { MenuValidatorPipe } from './dto/menu.pipe';
-@Controller()
+@Controller({
+  path: 'menus',
+})
 export class MenuController {
   constructor(private readonly menuService: MenuService) {}
 

@@ -4,7 +4,9 @@ import DishDto from './dto/dish.dto';
 import { Body } from '@nestjs/common';
 import { DishValidatorPipe } from './dto/dish.pipe';
 
-@Controller()
+@Controller({
+  path: 'menus',
+})
 export class DishController {
   constructor(private readonly dishService: DishService) {}
 
