@@ -13,4 +13,4 @@ import { Restaurant } from '../restaurants/restaurant.entity';
   controllers: [MenuController],
   providers: [MenuService],
 })
-export class MenuModule { }
+export class MenuModule {}

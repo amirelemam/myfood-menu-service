@@ -11,7 +11,7 @@ export class MenuService {
     private readonly repository: Repository<Menu>,
     @InjectRepository(Restaurant)
     private readonly restaurantRepository: Repository<Restaurant>,
-  ) { }
+  ) {}
 
   async create(menuData: MenuDto) {
     const restaurant = await this.restaurantRepository.findOne({
