@@ -10,9 +10,12 @@ export class DishService {
     private readonly repository: Repository<Dish>,
   ) {}
 
-  create(menuId: string, dishData: DishDto): string {
-    return `This action adds a new dish to menu #${menuId} data: ${JSON.stringify(
-      dishData,
-    )}`;
+  create(menuId: string, dishData: DishDto) {
+    const dish = new Dish();
+
+    Object.assign(dish, dishData);
+    dish.menuId = menuId;
+
+    return this.repository.save(dish);
   }
 }

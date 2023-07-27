@@ -12,7 +12,7 @@ export class DishController {
   createDish(
     @Param('menuId', new ParseUUIDPipe()) menuId: string,
     @Body(new DishValidatorPipe()) dishData: DishDto,
-  ): string {
+  ) {
     return this.dishService.create(menuId, dishData);
   }
 }

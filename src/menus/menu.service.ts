@@ -10,17 +10,20 @@ export class MenuService {
     private readonly repository: Repository<Menu>,
   ) {}
 
-  create(menuData: MenuDto): string {
-    return JSON.stringify(menuData);
+  create(menuData: MenuDto) {
+    const menu = new Menu();
+
+    Object.assign(menu, menuData);
+
+    return this.repository.save(menu);
   }
 
   async findById(menuId: string): Promise<Menu> {
-    const menu = await this.repository.findOneBy({ id: menuId });
+    const menu = await this.repository.findOne({
+      where: { id: menuId },
+      loadRelationIds: true,
+    });
 
     return menu;
-  }
-
-  createDish(menuId: string): string {
-    return `This action adds a new dish to menu #${menuId}`;
   }
 }

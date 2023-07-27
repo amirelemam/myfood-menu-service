@@ -9,7 +9,7 @@ export class MenuController {
   constructor(private readonly menuService: MenuService) {}
 
   @Post()
-  create(@Body(new MenuValidatorPipe()) menuData: MenuDto): string {
+  create(@Body(new MenuValidatorPipe()) menuData: MenuDto) {
     return this.menuService.create(menuData);
   }
 

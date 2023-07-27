@@ -9,8 +9,11 @@ export class Dish {
   @Column()
   name: string;
 
+  @Column({ type: 'decimal' })
+  price: number;
+
   @ManyToOne(() => Menu, (menu) => menu.dishes)
-  menuId: Menu;
+  menuId: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;
