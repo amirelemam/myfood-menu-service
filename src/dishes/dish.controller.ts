@@ -1,4 +1,11 @@
-import { Controller, Param, Post, ParseUUIDPipe } from '@nestjs/common';
+import {
+  Controller,
+  Param,
+  Post,
+  Put,
+  ParseUUIDPipe,
+  Get,
+} from '@nestjs/common';
 import { DishService } from './dish.service';
 import DishDto from './dto/dish.dto';
 import { Body } from '@nestjs/common';
@@ -11,10 +18,27 @@ export class DishController {
   constructor(private readonly dishService: DishService) {}
 
   @Post(':menuId/dishes')
-  createDish(
+  create(
     @Param('menuId', new ParseUUIDPipe()) menuId: string,
-    @Body(new DishValidatorPipe()) dishData: DishDto,
+    @Body() dishData: DishDto,
   ) {
     return this.dishService.create(menuId, dishData);
+  }
+
+  @Put(':menuId/dishes/:dishId')
+  update(
+    @Param('menuId', new ParseUUIDPipe()) menuId: string,
+    @Param('dishId', new ParseUUIDPipe()) dishId: string,
+    @Body() dishData: DishDto,
+  ) {
+    return this.dishService.update(menuId, dishData, dishId);
+  }
+
+  @Get(':menuId/dishes/:dishId')
+  findById(
+    @Param('menuId', new ParseUUIDPipe()) menuId: string,
+    @Param('dishId', new ParseUUIDPipe()) dishId: string,
+  ) {
+    return this.dishService.findById(menuId, dishId);
   }
 }

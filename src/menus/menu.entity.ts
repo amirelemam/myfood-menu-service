@@ -16,11 +16,11 @@ export class Menu {
   @Column()
   name: string;
 
-  @OneToMany(() => Dish, (dish) => dish.menuId)
+  @OneToMany(() => Dish, (dish) => dish.menu)
   dishes: Dish[];
 
   @ManyToOne(() => Restaurant, (restaurant) => restaurant.menus)
-  restaurantId: string;
+  restaurant: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;

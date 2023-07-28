@@ -13,7 +13,7 @@ export class Dish {
   price: number;
 
   @ManyToOne(() => Menu, (menu) => menu.dishes)
-  menuId: string;
+  menu: string;
 
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   createdAt: Date;

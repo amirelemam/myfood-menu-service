@@ -1,13 +1,13 @@
-import { IsString, IsNotEmpty } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
 
 export class DishDto {
   @IsString()
   @IsNotEmpty()
   name: string;
 
-  @IsString()
+  @IsNumber()
   @IsNotEmpty()
-  menuId: string;
+  price: number;
 }
 
 export default DishDto;
